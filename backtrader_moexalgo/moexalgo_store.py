@@ -27,7 +27,7 @@ class MoexAlgoStore(object):
 
         if login and password:
             session.authorize(login, password)  # Авторизуемся на Московской Бирже
-            print("Авторизуемся на Московской Бирже")
+            print("Авторизация прошла успешно")
 
     def getdata(self, **kwargs):  # timeframe, compression, from_date=None, live_bars=True
         """Метод получения исторических и live данных по тикеру"""

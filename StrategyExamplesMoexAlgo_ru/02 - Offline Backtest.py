@@ -119,8 +119,8 @@ if __name__ == '__main__':
     symbol = 'SBER'  # Тикер в формате <Код тикера>
     symbol2 = 'LKOH'  # Тикер в формате <Код тикера>
 
-    store = MoexAlgoStore()  # Хранилище AlgoPack
-    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+    # store = MoexAlgoStore()  # Хранилище AlgoPack
+    store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
 
     cerebro = bt.Cerebro(quicknotify=True)  # Инициируем "движок" BackTrader
 
@@ -137,7 +137,7 @@ if __name__ == '__main__':
 
     # # Исторические 10-минутные бары за 10000 часов + новые live бары / таймфрейм M10
     timeframe = "M10"
-    fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=60*10000)
+    fromdate = dt.datetime.now() - dt.timedelta(minutes=60*10000)
     data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=10, dataname=symbol, fromdate=fromdate, live_bars=False)  # поставьте здесь True - если нужно получать live бары
     data2 = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=10, dataname=symbol2, fromdate=fromdate, live_bars=False)  # поставьте здесь True - если нужно получать live бары
 

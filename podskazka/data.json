@@ -1,0 +1,6 @@
+{
+  "symbols" : ["SBER", "GAZP"],
+  "users" : [
+    {"id":1, "name": "Alex", "chat_id": "403165653"}
+  ]
+}

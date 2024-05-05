@@ -1,3 +1,9 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 class Config:
-    Login = '<Адрес электронной почты>'  # Адрес электронной почты, указанный при регистрации на сайте moex.com
-    Password = '<Пароль>'  # Пароль от учетной записи на сайте moex.com
+    Login = os.getenv('LOGIN')  # Адрес электронной почты, указанный при регистрации на сайте moex.com
+    Password = os.getenv('PASSWORD')  # Пароль от учетной записи на сайте moex.com

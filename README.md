@@ -15,6 +15,13 @@
   - Много полезной документации о том, как делать стратегии есть [здесь](https://www.backtrader.com/docu/quickstart/quickstart/ ).
 
 Для подключения к API мы используем библиотеку [moexalgo](https://github.com/moexalgo/moexalgo).
+- https://iss.moex.com/iss/index Описание метаданных
+- https://iss.moex.com/iss/reference/ Описание методов
+- https://fs.moex.com/files/6524 Примеры для разработчиков
+- ./iss-api-rus-v14.pdf - руководство разработчика MOEX ALGOPACK
+- Руководство по MOEX ALGOPACK https://moexalgo.github.io/
+- Supercandels https://moexalgo.github.io/modules/supercandles/
+- Данные для Supercandels https://moexalgo.github.io/des/supercandles/
 
 **Обучающее видео по работе с этой библиотекой можно посмотреть [на YouTube](https://youtu.be/SmcQF2jPxsQ ) и [на RuTube](https://rutube.ru/video/private/ba9e19f36c98d45ac9caf5b399dda6ca/?p=2T_4kwuwMz9aQAY3kFxYfQ )**
 

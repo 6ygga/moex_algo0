@@ -199,7 +199,7 @@ if __name__ == '__main__':
 
     # live 1-минутные бары / таймфрейм M1
     timeframe = "M1"
-    fromdate = dt.datetime.utcnow()
+    fromdate = dt.datetime.now()
     data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=1, dataname=symbol, fromdate=fromdate,
                          live_bars=True, name=f"{live_prefix}{symbol}")  # поставьте здесь True - если нужно получать live бары # name - нужен для выставления в live заявок
     # data2 = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=1, dataname=symbol2, fromdate=fromdate, live_bars=True)  # поставьте здесь True - если нужно получать live бары
