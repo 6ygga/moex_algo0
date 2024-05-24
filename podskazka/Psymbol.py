@@ -23,8 +23,8 @@ class Psymbol:
 
         start_date = dt.datetime.now().date() - dt.timedelta(days=historical_data_len)
         end_date = dt.datetime.now().date()
-        # self.historical_data = self.ticker.candles(start=start_date, end=end_date)
-        self.historical_data = self.ticker.tradestats(start=start_date, end=end_date)
+        # self.historical_data = self.ticker.candles(start=start_date, end=end_date)  # данные о свечах (малое количество данных поэтому не используется)
+        self.historical_data = self.ticker.tradestats(start=start_date, end=end_date)  # новые расширенные данные по свечам
 
         # инициализируем сигналы из списка
         for signal in signal_names:
@@ -38,8 +38,8 @@ class Psymbol:
         # new_data = self.ticker.candles(start=dt.datetime.now().date() - dt.timedelta(days=3),
         #                                   end=dt.datetime.now().date(),
         #                                   latest=True)
-        new_data = self.ticker.tradestats(start=dt.datetime.now().date() - dt.timedelta(days=3),
-                                          end=dt.datetime.now().date() - dt.timedelta(days=3),
+        new_data = self.ticker.tradestats(start=dt.datetime.now().date(),
+                                          end=dt.datetime.now().date(),
                                           latest=True)
         if not len(new_data):
             return []
@@ -50,7 +50,7 @@ class Psymbol:
         for signal in self.signals:
             signal_message = signal.new_data(new_data=new_data, historical_data=self.historical_data)
             if signal_message:
-                signal_messages.append(self.name + signal_message)
+                signal_messages.append(f'{self.name} {signal_message}')
 
         self.historical_data = pd.concat([self.historical_data[1:], new_data],
                                          ignore_index=True)  # добавляем новые данные удаляем первый элемент чтобы не увеличивать размер

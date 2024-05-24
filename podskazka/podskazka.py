@@ -24,7 +24,7 @@ if __name__ == '__main__':
     telegram_app = ApplicationBuilder().token(telegram_token).read_timeout(60).write_timeout(60).build()
 
     job_queue = telegram_app.job_queue
-    job_minute = job_queue.run_repeating(callback_minute, interval=30, first=5, data={'tools': tools})
+    job_minute = job_queue.run_repeating(callback_minute, interval=300, first=5, data={'tools': tools})
 
     telegram_app.add_handler(CommandHandler("start", start))
     telegram_app.add_handler(CommandHandler("hello", hello))

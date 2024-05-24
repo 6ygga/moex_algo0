@@ -1,4 +1,5 @@
 from telegram.ext import ContextTypes
+from datetime import datetime
 
 
 async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
@@ -6,7 +7,7 @@ async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
     for tool in tools:
         messages = tool.update()
 
-        print(tool.name, 'updated!')
+        print('^^^', datetime.now().isoformat(), tool.name, 'updated!')
 
         for message in messages:
             await context.bot.send_message(chat_id='403165653', text=message if message else f'{tool.name} updated!')

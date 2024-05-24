@@ -1,6 +1,7 @@
 import numpy as np
 
 
+# Сигнал Аномального объема (Value)
 class Value:
     value = 0
     name = 'Extra Value'
@@ -12,9 +13,9 @@ class Value:
         # self.middle = np.mean(historical_data['value'])
         self.value = new_data['val'][0]
 
-        print(f'{self.value}/{self.middle} {self.name}')
+        print(f'{self.value:.2f}/{self.middle:.2f} {self.name}')
         if self.value > self.middle * 5:
-            return f'Аномальный объем {self.value}/{self.middle} {self.name}'
+            return f'Аномальный объем {self.value:.2f}/{self.middle:.2f}'  # Сообщение от Сигнала Аномального объема
 
         return ''
 
