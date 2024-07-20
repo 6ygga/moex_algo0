@@ -2,5 +2,9 @@
   "symbols" : ["SBER", "GAZP"],
   "users" : [
     {"id":1, "name": "Alex", "chat_id": "403165653"}
-  ]
+  ],
+  "tick_value_middle": {
+    "SBER": 150000,
+    "GAZP": 129265
+  }
 }

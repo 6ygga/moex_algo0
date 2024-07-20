@@ -53,7 +53,7 @@ class RSIStrategy(bt.Strategy):
         """Приход нового бара тикера"""
         for data in self.datas:  # Пробегаемся по всем запрошенным барам всех тикеров
             ticker = data._name
-            status = data._state  # 0 - Live data, 1 - History data, 2 - None
+            status = data._state  # 0 - Live data_loader, 1 - History data_loader, 2 - None
             _interval = self.p.timeframe
             _date = bt.num2date(data.datetime[0])
 
@@ -67,8 +67,8 @@ class RSIStrategy(bt.Strategy):
                 pass
 
             if status in [0, 1]:
-                if status: _state = "False - History data"
-                else: _state = "True - Live data"
+                if status: _state = "False - History data_loader"
+                else: _state = "True - Live data_loader"
 
                 print('{} / {} [{}] - Open: {}, High: {}, Low: {}, Close: {}, Volume: {} - Live: {}'.format(
                     bt.num2date(data.datetime[0]),
@@ -92,7 +92,7 @@ class RSIStrategy(bt.Strategy):
                     return  # то ждем постановки заявки на бирже, выходим, дальше не продолжаем
                 if not self.getposition(data):  # Если позиции нет
                     # if order and order.status == bt.Order.Accepted:  # Если заявка на бирже (принята брокером)
-                    #     print(f"\t - Снимаем заявку на покупку {data._name}")
+                    #     print(f"\t - Снимаем заявку на покупку {data_loader._name}")
                     #     self.cancel(order)  # то снимаем ее
 
                     if not self.buy_once[ticker]:  # Enter long

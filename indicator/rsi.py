@@ -38,15 +38,15 @@ def calc_rsi(over: pd.Series, fn_roll: Callable) -> pd.Series:
 # import matplotlib.pyplot as plt
 # import numpy as np
 # import pandas as pd
-# import pandas_datareader.data as web
+# import pandas_datareader.data_loader as web
 
-# # Get data
-# data = web.DataReader('AAPL', 'yahoo', start, end)
+# # Get data_loader
+# data_loader = web.DataReader('AAPL', 'yahoo', start, end)
 # # Get just the adjusted close
-# close = data['Adj Close']
+# close = data_loader['Adj Close']
 
 # # Calculate RSI using MA of choice
-# # Reminder: Provide ≥ `1 + length` extra data points!
+# # Reminder: Provide ≥ `1 + length` extra data_loader points!
 # rsi_ema = calc_rsi(close, lambda s: s.ewm(span=length).mean())
 # rsi_sma = calc_rsi(close, lambda s: s.rolling(length).mean())
 # rsi_rma = calc_rsi(close, lambda s: s.ewm(alpha=1 / length).mean())  # Approximates TradingView.

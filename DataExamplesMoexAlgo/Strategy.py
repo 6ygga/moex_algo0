@@ -19,12 +19,12 @@ class StrategyJustPrintsOHLCVAndSuperCandles(bt.Strategy):
 
     def __init__(self):
         """Initialization of the trading system"""
-        self.isLive = False  # Historical data will come first
+        self.isLive = False  # Historical data_loader will come first
 
     def next(self):
         """Arrival of a new ticker candle"""
         # if self.p.name:  # If you have specified the name of the trading system, then we will wait for the arrival of all bars
-        #     lastdatetimes = [bt.num2date(data.datetime[0]) for data in self.datas]  # Date and time of the last bar of each ticker
+        #     lastdatetimes = [bt.num2date(data_loader.datetime[0]) for data_loader in self.datas]  # Date and time of the last bar of each ticker
         #     if lastdatetimes.count(lastdatetimes[0]) != len(lastdatetimes):  # If the date and time of the last bars are not identical
         #         return  # then all the new bars haven't arrived yet. We wait further, we go out
         #     print(self.p.name)

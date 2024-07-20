@@ -38,7 +38,7 @@ class StrategySaveOHLCVToDF(bt.Strategy):
                 pass
 
             try:
-                status = data._state  # 0 - Live data, 1 - History data, 2 - None
+                status = data._state  # 0 - Live data_loader, 1 - History data_loader, 2 - None
                 _interval = data.interval
             except Exception as e:
                 if data.resampling == 1:
@@ -50,8 +50,8 @@ class StrategySaveOHLCVToDF(bt.Strategy):
 
             if status == 1:
                 _state = "Resampled Data"
-                if status == 1: _state = "False - History data"
-                if status == 0: _state = "True - Live data"
+                if status == 1: _state = "False - History data_loader"
+                if status == 0: _state = "True - Live data_loader"
 
                 self.df[ticker].append([bt.num2date(data.datetime[0]), data.open[0], data.high[0], data.low[0], data.close[0], data.volume[0]])
 

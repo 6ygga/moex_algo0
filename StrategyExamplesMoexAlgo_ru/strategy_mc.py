@@ -46,7 +46,7 @@ class StrategyJustPrintsOHLCVAndSuperCandlesMC(bt.Strategy):
     def next(self):
         """Приход нового бара тикера"""
         # if self.p.name:  # Если указали название торговой системы, то будем ждать прихода всех баров
-        #     lastdatetimes = [bt.num2date(data.datetime[0]) for data in self.datas]  # Дата и время последнего бара каждого тикера
+        #     lastdatetimes = [bt.num2date(data_loader.datetime[0]) for data_loader in self.datas]  # Дата и время последнего бара каждого тикера
         #     if lastdatetimes.count(lastdatetimes[0]) != len(lastdatetimes):  # Если дата и время последних баров не идентичны
         #         return  # то еще не пришли все новые бары. Ждем дальше, выходим
         #     print(self.p.name)

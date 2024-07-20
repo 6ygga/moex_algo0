@@ -48,13 +48,13 @@ class NotifierStrategy(bt.Strategy):
         """Приход нового бара тикера"""
         for data in self.datas:  # Пробегаемся по всем запрошенным барам всех тикеров
             ticker = data._name
-            status = data._state  # 0 - Live data, 1 - History data, 2 - None
+            status = data._state  # 0 - Live data_loader, 1 - History data_loader, 2 - None
             _interval = self.p.timeframe
             _date = bt.num2date(data.datetime[0])
 
             try:
                 if data.p.supercandles[ticker][data.p.metric_name]:
-                    # print("\tSuper Candle:", data.p.supercandles[ticker][data.p.metric_name][0])
+                    # print("\tSuper Candle:", data_loader.p.supercandles[ticker][data_loader.p.metric_name][0])
                     _data = data.p.supercandles[ticker][data.p.metric_name][0]
                     _data['datetime'] = _date
                     self.supercandles[ticker][data.p.metric_name].append(_data)
@@ -62,8 +62,8 @@ class NotifierStrategy(bt.Strategy):
                 pass
 
             if status in [0, 1]:
-                if status: _state = "False - History data"
-                else: _state = "True - Live data"
+                if status: _state = "False - History data_loader"
+                else: _state = "True - Live data_loader"
 
                 if data.tick_volume > 1000000:  # Если есть заявки
                     print('{} / {} [{}] - Open: {}, High: {}, Low: {}, Close: {}, Volume: {} - Live: {}'.format(
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     timeframe = "M1"
     fromdate = dt.datetime.now() - dt.timedelta(days=30)
     for symbol in symbols:
-        # data = store.getdata(timeframe=bt.TimeFrame.Minutes,
+        # data_loader = store.getdata(timeframe=bt.TimeFrame.Minutes,
         #                      compression=1,
         #                      dataname=symbol,
         #                      fromdate=fromdate,

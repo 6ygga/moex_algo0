@@ -58,7 +58,7 @@ class RSIStrategy(bt.Strategy):
         """Приход нового бара тикера"""
         for data in self.datas:  # Пробегаемся по всем запрошенным барам всех тикеров
             ticker = data._name
-            status = data._state  # 0 - Live data, 1 - History data, 2 - None
+            status = data._state  # 0 - Live data_loader, 1 - History data_loader, 2 - None
             _interval = self.p.timeframe
             _date = bt.num2date(data.datetime[0])
 
@@ -72,8 +72,8 @@ class RSIStrategy(bt.Strategy):
                 pass
 
             if status in [0, 1]:
-                if status: _state = "False - History data"
-                else: _state = "True - Live data"
+                if status: _state = "False - History data_loader"
+                else: _state = "True - Live data_loader"
 
                 print('{} / {} [{}] - Open: {}, High: {}, Low: {}, Close: {}, Volume: {} - Live: {}'.format(
                     bt.num2date(data.datetime[0]),
@@ -98,11 +98,11 @@ class RSIStrategy(bt.Strategy):
 
                     # lot = self.p.info_tickers[ticker]['securities']['LOTSIZE']
                     # size = 1 * lot  # купим 1 лот - проверку на наличие денег не будем делать, считаем что они есть)
-                    # price = self.format_price(ticker, data.close[0] * 0.995)  # buy at close price -0.005% - to prevent buy
+                    # price = self.format_price(ticker, data_loader.close[0] * 0.995)  # buy at close price -0.005% - to prevent buy
                     # # price = 273.65
                     # print(f" - buy {ticker} size = {size} at price = {price}")
 
-                    # self.orders[data._name] = self.buy(data=data, exectype=bt.Order.Limit, price=price, size=size)
+                    # self.orders[data_loader._name] = self.buy(data_loader=data_loader, exectype=bt.Order.Limit, price=price, size=size)
                     rez = self.p.fp_provider.new_order(client_id=self.client_id, security_board=self.security_board,
                                                        security_code=ticker,
                                                        buy_sell=BUY_SELL_BUY, quantity=1,
@@ -114,7 +114,7 @@ class RSIStrategy(bt.Strategy):
                     print("\t - транзакция:", rez.transaction_id)
                     print("\t - время:", self.order_time)
 
-                    # print(f"\t - Выставлена заявка {self.orders[data._name]} на покупку {data._name}")
+                    # print(f"\t - Выставлена заявка {self.orders[data_loader._name]} на покупку {data_loader._name}")
 
                     self.buy_once[ticker] = len(self)  # для однократной покупки + записываем номер бара
 
@@ -125,7 +125,7 @@ class RSIStrategy(bt.Strategy):
                             print("sell")
                             print(f"\t - Продаём по рынку {data._name}...")
 
-                            # self.orders[data._name] = self.close()  # закрываем позицию по рынку
+                            # self.orders[data_loader._name] = self.close()  # закрываем позицию по рынку
                             rez = self.p.fp_provider.new_order(client_id=self.client_id, security_board=self.security_board,
                                                                security_code=ticker,
                                                                buy_sell=BUY_SELL_SELL, quantity=1,
